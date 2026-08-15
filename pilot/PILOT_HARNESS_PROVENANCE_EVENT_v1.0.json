@@ -1,0 +1,12 @@
+{
+  "ledger_update_type":"PILOT_HARNESS_PROVENANCE_EVENT",
+  "platform":"NOIOP",
+  "event":"Executable controlled pilot validation harness established",
+  "entrypoint_commit":"5782012094f0280e7c45d6dd5455e00bb858204c",
+  "test_commit":"53aa4a0699aa390694304df10d8f5b771682073a",
+  "workflow_commit":"52a6b16f988fb840a93104fc0389fb9c38237a29",
+  "manifest_commit":"a815506a2b42a52f287bc02c9f756da5517818f0",
+  "classification":"PUBLIC_SAFE_TECHNICAL_PROVENANCE",
+  "institutional_pilot_status":"NOT_TESTED",
+  "master_ledger_action":"Cross-reference this event in the controlled Intellectual Property Master Ledger as technical provenance evidence."
+}
