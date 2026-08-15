@@ -1,0 +1,32 @@
+[
+  {
+    "opportunity_id": "DEMO-001",
+    "title": "Industrial AI Energy Optimization",
+    "demand": 0.92,
+    "strategic_alignment": 0.90,
+    "readiness": 0.80,
+    "risk_inverse": 0.74,
+    "evidence_quality": 0.93,
+    "timing": 0.86
+  },
+  {
+    "opportunity_id": "DEMO-002",
+    "title": "Smart Logistics Route Intelligence",
+    "demand": 0.86,
+    "strategic_alignment": 0.84,
+    "readiness": 0.72,
+    "risk_inverse": 0.70,
+    "evidence_quality": 0.88,
+    "timing": 0.79
+  },
+  {
+    "opportunity_id": "DEMO-003",
+    "title": "Water Infrastructure Predictive Optimization",
+    "demand": 0.90,
+    "strategic_alignment": 0.88,
+    "readiness": 0.76,
+    "risk_inverse": 0.72,
+    "evidence_quality": 0.91,
+    "timing": 0.82
+  }
+]
