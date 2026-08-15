@@ -1,18 +1,30 @@
 {
   "artifact":"NOIOP Pilot Evidence Register",
-  "version":"1.0",
-  "status":"OPEN_FOR_EXECUTION",
+  "version":"1.1",
+  "status":"AUTOMATED_HARNESS_VALIDATED",
+  "verified_harness_run":{
+    "run_id":31895538970,
+    "execution_id":"20260815T162709Z",
+    "head_sha":"e3b5e30782347102d2a1bbeec90c3c2308604b09",
+    "workflow":"NOIOP Pilot Validation",
+    "workflow_conclusion":"success",
+    "unit_tests":"4/4 PASS",
+    "controlled_scenarios":"10/10 PASS",
+    "artifact_id":9249690144,
+    "artifact_name":"noiop-pilot-evidence",
+    "artifact_sha256":"a23fec0995a167ba925a5316f73c9b83ec0154f74c2df47ffac1c831e9fbd359"
+  },
   "evidence_requirements":[
-    {"id":"PER-001","class":"environment","required":true,"status":"PENDING_EXECUTION"},
-    {"id":"PER-002","class":"approved_data_manifest","required":true,"status":"PENDING_EXECUTION"},
-    {"id":"PER-003","class":"scenario_execution_results","required":true,"status":"PENDING_EXECUTION"},
-    {"id":"PER-004","class":"authority_audit_log","required":true,"status":"PENDING_EXECUTION"},
-    {"id":"PER-005","class":"traceability_matrix","required":true,"status":"PENDING_EXECUTION"},
-    {"id":"PER-006","class":"performance_measurements","required":true,"status":"PENDING_EXECUTION"},
-    {"id":"PER-007","class":"incident_and_exception_register","required":true,"status":"PENDING_EXECUTION"},
-    {"id":"PER-008","class":"reproducibility_results","required":true,"status":"PENDING_EXECUTION"},
-    {"id":"PER-009","class":"disclosure_control_review","required":true,"status":"PENDING_EXECUTION"},
+    {"id":"PER-001","class":"environment","required":true,"status":"HARNESS_ENVIRONMENT_EVIDENCED","scope":"GitHub-hosted Ubuntu runner / Python 3.12; institutional target environment remains pending"},
+    {"id":"PER-002","class":"approved_data_manifest","required":true,"status":"PENDING_AUTHORIZED_PILOT_DATA"},
+    {"id":"PER-003","class":"scenario_execution_results","required":true,"status":"HARNESS_PASS","evidence":"10/10 controlled scenarios PASS"},
+    {"id":"PER-004","class":"authority_audit_log","required":true,"status":"HARNESS_CONTROL_EVIDENCED","evidence":"authority-boundary and human-override scenarios PASS; institutional authority log pending"},
+    {"id":"PER-005","class":"traceability_matrix","required":true,"status":"HARNESS_PASS","evidence":"SHA-256 input/result mappings generated for all 10 scenarios"},
+    {"id":"PER-006","class":"performance_measurements","required":true,"status":"HARNESS_MEASURED","evidence":"execution durations generated for all 10 controlled scenarios; not a production benchmark"},
+    {"id":"PER-007","class":"incident_and_exception_register","required":true,"status":"HARNESS_CONTROL_EVIDENCED","evidence":"controlled operational error path PASS; live institutional incident register pending"},
+    {"id":"PER-008","class":"reproducibility_results","required":true,"status":"HARNESS_PASS","evidence":"reproducible canonical hashing test PASS and scenario traceability evidence generated"},
+    {"id":"PER-009","class":"disclosure_control_review","required":true,"status":"HARNESS_CONTROL_EVIDENCED","evidence":"public-safe disclosure boundary scenario PASS; formal institutional disclosure review pending"},
     {"id":"PER-010","class":"institutional_acceptance_record","required":true,"status":"PENDING_AUTHORIZED_PILOT"}
   ],
-  "integrity_rule":"Evidence must be attributable to a defined scenario, execution context and version. Pending evidence must never be represented as passed evidence."
+  "integrity_rule":"Automated harness evidence must remain distinguished from authorized institutional pilot evidence. No harness PASS may be represented as customer acceptance, production certification or regulatory approval."
 }
