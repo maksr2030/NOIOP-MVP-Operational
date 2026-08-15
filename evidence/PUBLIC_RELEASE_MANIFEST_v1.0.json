@@ -1,0 +1,20 @@
+{
+  "platform": "National Opportunity Intelligence & Orchestration Platform",
+  "short_name": "NOIOP",
+  "release": "Operational MVP Public-Safe Release v1.0",
+  "status": "ACCEPTED",
+  "public_url": "https://maksr2030.github.io/NOIOP-MVP-Operational/",
+  "repository": "https://github.com/maksr2030/NOIOP-MVP-Operational",
+  "branch": "main",
+  "deployment_evidence": {
+    "workflow": "Deploy NOIOP MVP to GitHub Pages",
+    "deployment_commit": "5462028b0731181ed53966af36e48b27f35c751c",
+    "workflow_conclusion": "success"
+  },
+  "acceptance_evidence": {
+    "record": "evidence/PUBLIC_OPERATIONAL_ACCEPTANCE_v1.0.md",
+    "evidence_index": "evidence/ACQUISITION_TECHNICAL_EVIDENCE_INDEX_v1.0.json"
+  },
+  "release_boundary": "Public-safe demonstrator. Confidential implementation and acquisition-sensitive materials excluded.",
+  "release_control": "Any material expansion of public disclosure requires a new public-safe review."
+}
