@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: noiop-mvp-operational
+    runtime: docker
+    plan: starter
+    autoDeploy: true
+    healthCheckPath: /health
+    envVars:
+      - key: NOIOP_ALLOWED_ORIGIN
+        value: https://maksr2030.github.io
+      - key: NOIOP_DB_PATH
+        value: /data/noiop.db
+    disk:
+      name: noiop-data
+      mountPath: /data
+      sizeGB: 1
