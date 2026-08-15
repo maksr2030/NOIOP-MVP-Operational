@@ -1,0 +1,16 @@
+{
+  "artifact": "NOIOP Pilot Success Criteria",
+  "version": "1.0",
+  "status": "BASELINE",
+  "criteria": [
+    {"id":"PSC-001","criterion":"Approved pilot scenarios complete end-to-end without uncontrolled workflow breakage","target":"100% mandatory scenarios executed","evidence":"scenario execution records","mandatory":true},
+    {"id":"PSC-002","criterion":"Material recommendations retain traceable evidence references","target":"100% sampled material recommendations traceable","evidence":"traceability register","mandatory":true},
+    {"id":"PSC-003","criterion":"Human approval is preserved at designated authority gates","target":"0 unauthorized autonomous final decisions","evidence":"authority audit log","mandatory":true},
+    {"id":"PSC-004","criterion":"Critical pilot errors are detected and recorded","target":"100% observed critical errors captured in incident register","evidence":"incident register","mandatory":true},
+    {"id":"PSC-005","criterion":"Required pilot evidence artifacts are complete","target":"100% mandatory evidence classes present","evidence":"pilot evidence index","mandatory":true},
+    {"id":"PSC-006","criterion":"Performance is measured against an agreed scenario baseline","target":"Baseline and measured results recorded for every mandatory scenario","evidence":"performance report","mandatory":true},
+    {"id":"PSC-007","criterion":"No protected credential or prohibited confidential asset is exposed in public pilot evidence","target":"0 confirmed prohibited disclosures","evidence":"disclosure-control review","mandatory":true},
+    {"id":"PSC-008","criterion":"Institutional reviewers can reproduce designated pilot outcomes from retained evidence","target":"All designated reproducibility checks pass","evidence":"reproducibility report","mandatory":true}
+  ],
+  "decision_rule":"PASS requires all mandatory criteria to be evidenced as satisfied. Targets may be contractually refined before a live institutional pilot, but changes must be version-controlled and approved before execution."
+}
