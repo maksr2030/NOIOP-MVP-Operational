@@ -1,0 +1,14 @@
+{
+  "ledger_update_type": "PUBLIC_MVP_PROVENANCE_EVENT",
+  "platform": "NOIOP",
+  "event": "Public Operational MVP publication and acceptance",
+  "repository": "maksr2030/NOIOP-MVP-Operational",
+  "public_endpoint": "https://maksr2030.github.io/NOIOP-MVP-Operational/",
+  "deployment_commit": "5462028b0731181ed53966af36e48b27f35c751c",
+  "acceptance_record_commit": "3cf58b5ad8062f10f1a29384bac01f0aa1f154b8",
+  "technical_evidence_index_commit": "6e9c856a5eb219f3cf8d3806cc5bb7b16237c822",
+  "public_release_manifest_commit": "cf226f47497bf46cb10c2343a2933bd218d9ef29",
+  "classification": "PUBLIC_SAFE_PROVENANCE",
+  "rights_effect": "No assignment, transfer, waiver, or public-domain dedication is intended or created by publication.",
+  "master_ledger_action": "Append this event to the controlled Intellectual Property Master Ledger and cross-reference the confidential chain-of-title register."
+}
