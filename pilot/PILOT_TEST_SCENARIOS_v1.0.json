@@ -1,0 +1,16 @@
+{
+  "artifact":"NOIOP Pilot Test Scenarios",
+  "version":"1.0",
+  "scenarios":[
+    {"id":"PTS-001","name":"Standard opportunity intake and assessment","expected":"Validated input produces traceable assessment and recommendation for human review"},
+    {"id":"PTS-002","name":"Incomplete input handling","expected":"Missing or insufficient evidence is identified without fabricating completion"},
+    {"id":"PTS-003","name":"Conflicting evidence handling","expected":"Conflict is surfaced, retained and routed for governed review"},
+    {"id":"PTS-004","name":"Priority comparison","expected":"Multiple approved opportunities are ranked using the configured pilot criteria with traceable rationale"},
+    {"id":"PTS-005","name":"Human rejection and override","expected":"Reviewer can reject or override a recommendation and the action is attributable and auditable"},
+    {"id":"PTS-006","name":"Authority boundary challenge","expected":"Attempted action outside configured authority is blocked or escalated according to policy"},
+    {"id":"PTS-007","name":"Evidence reproducibility","expected":"Designated reviewer can reproduce the selected output from retained pilot inputs and configuration"},
+    {"id":"PTS-008","name":"Operational error path","expected":"Controlled failure generates an observable error state and evidence record rather than silent success"},
+    {"id":"PTS-009","name":"Disclosure boundary validation","expected":"Public-safe outputs exclude designated confidential and protected implementation material"},
+    {"id":"PTS-010","name":"End-to-end institutional decision package","expected":"Assessment, recommendation, human decision and evidence chain are assembled as one reviewable package"}
+  ]
+}
