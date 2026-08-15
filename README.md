@@ -4,59 +4,71 @@ National Opportunity Intelligence & Orchestration Platform
 
 [![NOIOP Operational MVP CI](https://github.com/maksr2030/NOIOP-MVP-Operational/actions/workflows/ci.yml/badge.svg)](https://github.com/maksr2030/NOIOP-MVP-Operational/actions/workflows/ci.yml)
 
-NOIOP is a governed opportunity-intelligence and institutional decision-orchestration platform designed to connect opportunity discovery, evidence, prioritization, simulation, human authority, execution controls, and value-realization tracking within one traceable operating lifecycle.
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/maksr2030/NOIOP-MVP-Operational)
 
-This public repository contains a controlled operational MVP prepared for technical demonstration, validation, and acquisition due diligence. It intentionally excludes confidential trade secrets, transaction valuation materials, negotiation parameters, private data-room documents, production secrets, and sensitive intellectual-property disclosures.
+NOIOP is a governed opportunity-intelligence and institutional decision-orchestration platform designed to connect opportunity discovery, evidence, prioritization, human authority, execution controls and value-realization tracking within one traceable operating lifecycle.
 
-## Public operational scope
+This public repository contains the public-safe Full-Stack MVP. Confidential trade secrets, transaction valuation materials, negotiation parameters, restricted data-room documents and protected implementation details remain excluded.
 
-The current public release demonstrates:
+## Current Full-Stack MVP
 
-- evidence-grounded opportunity assessment
-- readiness and evidence gates
-- explicit abstention behavior
-- multi-opportunity portfolio ranking
-- multi-entity synthetic demonstration
-- decision-stage trace generation
-- human material-authority boundary
-- deterministic evidence hashes in the Python runtime
-- expected-versus-realized value tracking
-- public evidence endpoint
-- browser-only interactive demonstration
-- Flask API runtime
+The current release includes:
+
+- public web interface on GitHub Pages
+- Flask 2.0.0 MVP backend
+- persistent opportunity records
+- server-side assessment
+- live portfolio generation
+- human decision recording
+- expected-versus-realized value events
+- SHA-256 audit-event evidence
+- SQLite persistent-store support
+- configurable cross-origin access from the public interface
+- Docker runtime
+- Gunicorn production process
+- Render Blueprint configuration
 - automated pytest verification
 - GitHub Actions continuous integration
-- Docker runtime definition
-- public-safe architecture and evidence documentation
+- pilot validation harness and evidence assets
 
-The closed internal F001-F050 feature baseline is referenced but not disclosed in full in this public repository.
+## Verification status
 
-## Current verification status
+The Full-Stack code baseline passes Continuous Integration on the current main branch. The backend and persistence lifecycle are covered by automated tests. GitHub Pages publishes the frontend, while the Flask backend requires a real web-service runtime.
 
-- GitHub Actions continuous integration: passing on the current main branch
-- automated tests: passing in CI
-- Python application compilation: passing in CI
-- previous failing Pages workflow: removed because GitHub Pages is not yet enabled at repository-settings level
-- root `index.html`: ready for branch-based GitHub Pages publication
-- intended public URL after Pages activation: `https://maksr2030.github.io/NOIOP-MVP-Operational/`
-
-The repository is therefore operationally green at code/CI level. Public web publication remains a repository setting, not an application defect.
-
-## Public web release configuration
-
-For GitHub Pages, configure the repository once as follows:
-
-1. Open `Settings` → `Pages`.
-2. Under `Build and deployment`, select `Deploy from a branch`.
-3. Select branch `main`.
-4. Select folder `/(root)`.
-5. Save.
-
-After GitHub publishes the site, the expected public URL is:
+Public frontend:
 
 `https://maksr2030.github.io/NOIOP-MVP-Operational/`
 
-No separate Pages workflow is required because the browser demonstration is fully static and self-contained in `index.html`.
+The frontend accepts the backend URL manually or through an `api` query parameter and then stores that HTTPS endpoint locally in the browser.
+
+Example after backend deployment:
+
+`https://maksr2030.github.io/NOIOP-MVP-Operational/?api=https://YOUR-BACKEND.onrender.com`
+
+## Deploy the backend
+
+The repository includes `render.yaml`, `Dockerfile`, Gunicorn and the required environment configuration for a Render web-service deployment.
+
+Use the Deploy to Render button above, review the Blueprint and approve it in the Render account. The configured service uses:
+
+- Docker runtime
+- health check: `/health`
+- persistent SQLite path: `/data/noiop.db`
+- persistent disk mounted at `/data`
+- allowed frontend origin: `https://maksr2030.github.io`
+
+A persistent Render disk requires a paid compatible web-service plan. The repository currently uses the `starter` plan so that the SQLite data remains available across deploys and restarts.
+
+After Render reports the service as Live, copy its HTTPS `onrender.com` URL and connect it from the public frontend. The operational acceptance test is then:
+
+1. Health endpoint returns `status=ok`, version `2.0.0-mvp`, and `persistent_store=true`.
+2. Create an opportunity from the browser.
+3. Refresh the frontend and verify the opportunity remains available.
+4. Run server-side assessment.
+5. Record a human decision with rationale.
+6. Record a value-realization event.
+7. Inspect the hashed audit chain.
+8. Reopen the application and confirm the persistent record remains available.
 
 ## Run locally
 
@@ -67,15 +79,19 @@ python app.py
 
 Open `http://localhost:8080`.
 
-## Run tests
-
-```bash
-python -m pytest -q
-```
-
-## Public API endpoints
+## Public API
 
 - `GET /health`
+- `GET /api/v1/opportunities`
+- `POST /api/v1/opportunities`
+- `GET /api/v1/opportunities/<id>`
+- `PUT /api/v1/opportunities/<id>`
+- `POST /api/v1/opportunities/<id>/assess`
+- `POST /api/v1/opportunities/<id>/decisions`
+- `GET /api/v1/opportunities/<id>/decisions`
+- `POST /api/v1/opportunities/<id>/value-events`
+- `GET /api/v1/opportunities/<id>/audit`
+- `GET /api/v1/portfolio/live`
 - `POST /api/v1/assess`
 - `POST /api/v1/portfolio`
 - `GET /api/v1/demo/portfolio`
@@ -83,22 +99,13 @@ python -m pytest -q
 - `POST /api/v1/value-realization`
 - `GET /api/v1/public-evidence`
 
-## Public evidence documents
-
-- `docs/ARCHITECTURE_OVERVIEW.md`
-- `docs/FEATURE_COVERAGE_MATRIX.md`
-- `docs/PUBLIC_EVIDENCE_REPORT.md`
-- `demo_data/portfolio_public.json`
-
 ## Acquisition and due-diligence boundary
 
-The public repository is designed to let an evaluator inspect source, run tests, review commit history, execute the browser demonstration and API, and verify that analytical output does not autonomously create material execution authority.
-
-Deeper architecture, protected feature specifications, sensitive intellectual-property evidence, source-level trade secrets, acquisition valuation, negotiation logic, and controlled data-room materials are not published here.
+The public repository is intended to establish technical provenance and inspectable operating behavior. It does not disclose the full confidential architecture, protected algorithms, confidential chain-of-title records, valuation, negotiation logic or restricted acquisition materials.
 
 ## Explicit non-claims
 
-The repository does not claim production certification, independent penetration-test clearance, regulatory approval, market validation, production-calibrated causal validity, financial outcome guarantees, or an external institutional pilot deployment.
+This repository does not claim production certification, independent penetration-test clearance, regulatory approval, external institutional acceptance, guaranteed financial outcomes or unrestricted production readiness.
 
 ## Rights
 
