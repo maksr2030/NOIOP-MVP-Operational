@@ -1,0 +1,18 @@
+{
+  "artifact":"NOIOP Pilot Evidence Register",
+  "version":"1.0",
+  "status":"OPEN_FOR_EXECUTION",
+  "evidence_requirements":[
+    {"id":"PER-001","class":"environment","required":true,"status":"PENDING_EXECUTION"},
+    {"id":"PER-002","class":"approved_data_manifest","required":true,"status":"PENDING_EXECUTION"},
+    {"id":"PER-003","class":"scenario_execution_results","required":true,"status":"PENDING_EXECUTION"},
+    {"id":"PER-004","class":"authority_audit_log","required":true,"status":"PENDING_EXECUTION"},
+    {"id":"PER-005","class":"traceability_matrix","required":true,"status":"PENDING_EXECUTION"},
+    {"id":"PER-006","class":"performance_measurements","required":true,"status":"PENDING_EXECUTION"},
+    {"id":"PER-007","class":"incident_and_exception_register","required":true,"status":"PENDING_EXECUTION"},
+    {"id":"PER-008","class":"reproducibility_results","required":true,"status":"PENDING_EXECUTION"},
+    {"id":"PER-009","class":"disclosure_control_review","required":true,"status":"PENDING_EXECUTION"},
+    {"id":"PER-010","class":"institutional_acceptance_record","required":true,"status":"PENDING_AUTHORIZED_PILOT"}
+  ],
+  "integrity_rule":"Evidence must be attributable to a defined scenario, execution context and version. Pending evidence must never be represented as passed evidence."
+}
