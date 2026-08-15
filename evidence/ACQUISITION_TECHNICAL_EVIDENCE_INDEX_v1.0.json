@@ -1,0 +1,24 @@
+{
+  "artifact": "NOIOP Acquisition Technical Evidence Index",
+  "version": "1.0",
+  "release_status": "PUBLIC_OPERATIONAL_ACCEPTED",
+  "repository": "maksr2030/NOIOP-MVP-Operational",
+  "public_endpoint": "https://maksr2030.github.io/NOIOP-MVP-Operational/",
+  "release_branch": "main",
+  "pages_release_commit": "5462028b0731181ed53966af36e48b27f35c751c",
+  "acceptance_record_commit": "3cf58b5ad8062f10f1a29384bac01f0aa1f154b8",
+  "evidence_classes": [
+    "public_web_endpoint",
+    "git_provenance",
+    "pages_deployment",
+    "continuous_integration",
+    "automated_tests",
+    "public_safe_architecture",
+    "operational_demonstration",
+    "human_authority_boundary",
+    "disclosure_control"
+  ],
+  "disclosure_classification": "PUBLIC_SAFE",
+  "confidential_material_excluded": true,
+  "ownership_note": "Technical publication evidence supplements but does not replace the separate Intellectual Property Master Ledger and legal chain-of-title documentation."
+}
