@@ -1,0 +1,35 @@
+name: NOIOP Pilot Validation
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "pilot_harness/**"
+      - "pilot/**"
+      - "tests/test_pilot_harness.py"
+      - ".github/workflows/pilot-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  pilot-validation:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Run pilot harness unit tests
+        run: python -m unittest tests.test_pilot_harness -v
+      - name: Execute controlled pilot scenarios
+        run: python pilot_harness/run_pilot.py
+      - name: Upload pilot evidence bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: noiop-pilot-evidence
+          path: pilot_results/
+          if-no-files-found: error
