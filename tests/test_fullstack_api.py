@@ -14,13 +14,6 @@ class FullStackApiTests(unittest.TestCase):
     def setUpClass(cls):
         cls.client = noiop.app.test_client()
 
-    @classmethod
-    def tearDownClass(cls):
-        try:
-            os.remove(path)
-        except FileNotFoundError:
-            pass
-
     def test_health_reports_persistent_store(self):
         r = self.client.get('/health')
         self.assertEqual(r.status_code, 200)
