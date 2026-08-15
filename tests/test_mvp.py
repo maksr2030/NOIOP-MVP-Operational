@@ -6,7 +6,8 @@ def test_health():
     response = client.get('/health')
     assert response.status_code == 200
     assert response.get_json()['status'] == 'ok'
-    assert response.get_json()['version'] == '1.1.0-public'
+    assert response.get_json()['version'] == '2.0.0-mvp'
+    assert response.get_json()['persistent_store'] is True
 
 
 def test_priority_candidate():
