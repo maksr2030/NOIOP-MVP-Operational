@@ -1,11 +1,16 @@
-const DEFAULT_API = localStorage.getItem('noiop_api_base') || '';
-let API_BASE = DEFAULT_API.replace(/\/$/,'');
+const queryApi = new URLSearchParams(window.location.search).get('api') || '';
+const storedApi = localStorage.getItem('noiop_api_base') || '';
+const DEFAULT_API = (queryApi || storedApi).replace(/\/$/,'');
+let API_BASE = DEFAULT_API;
 let selectedOpportunityId = null;
+
+if(queryApi){ localStorage.setItem('noiop_api_base', DEFAULT_API); }
 
 function apiUrl(path){ return API_BASE ? API_BASE + path : path; }
 function actor(){ return document.getElementById('actorName')?.value || 'demo-decision-owner'; }
 function apiHeaders(){ return {'Content-Type':'application/json','X-NOIOP-Actor':actor()}; }
 async function api(path, options={}){
+  if(!API_BASE && location.hostname.includes('github.io')) throw new Error('Backend API URL is not configured. Deploy the backend, then connect its HTTPS URL.');
   const response = await fetch(apiUrl(path), {...options, headers:{...apiHeaders(), ...(options.headers||{})}});
   const text = await response.text(); let data={}; try{data=text?JSON.parse(text):{}}catch{data={raw:text}};
   if(!response.ok) throw new Error(data.error || data.message || `HTTP ${response.status}`);
@@ -84,5 +89,6 @@ async function livePortfolio(){
 
 window.addEventListener('DOMContentLoaded',()=>{
   document.getElementById('apiBase').value=API_BASE;
-  if(API_BASE || location.protocol.startsWith('http')) connectBackend();
+  if(API_BASE) connectBackend();
+  else if(location.hostname.includes('github.io')) setConn('FRONTEND LIVE | BACKEND NOT CONFIGURED');
 });
