@@ -1,0 +1,51 @@
+{
+  "dataset": "NOIOP Public Synthetic Portfolio v1.1",
+  "synthetic": true,
+  "non_production": true,
+  "opportunities": [
+    {
+      "opportunity_id": "DEMO-001",
+      "tenant_id": "ENTITY-A",
+      "title": "Industrial AI Energy Optimization",
+      "demand": 0.92,
+      "strategic_alignment": 0.90,
+      "readiness": 0.80,
+      "risk_inverse": 0.74,
+      "evidence_quality": 0.93,
+      "timing": 0.86
+    },
+    {
+      "opportunity_id": "DEMO-002",
+      "tenant_id": "ENTITY-A",
+      "title": "Smart Logistics Route Intelligence",
+      "demand": 0.84,
+      "strategic_alignment": 0.82,
+      "readiness": 0.71,
+      "risk_inverse": 0.70,
+      "evidence_quality": 0.86,
+      "timing": 0.78
+    },
+    {
+      "opportunity_id": "DEMO-101",
+      "tenant_id": "ENTITY-B",
+      "title": "Water Infrastructure Predictive Optimization",
+      "demand": 0.88,
+      "strategic_alignment": 0.87,
+      "readiness": 0.76,
+      "risk_inverse": 0.72,
+      "evidence_quality": 0.90,
+      "timing": 0.81
+    },
+    {
+      "opportunity_id": "DEMO-102",
+      "tenant_id": "ENTITY-B",
+      "title": "Low-Evidence Demonstration Case",
+      "demand": 0.94,
+      "strategic_alignment": 0.91,
+      "readiness": 0.70,
+      "risk_inverse": 0.75,
+      "evidence_quality": 0.32,
+      "timing": 0.90
+    }
+  ]
+}
