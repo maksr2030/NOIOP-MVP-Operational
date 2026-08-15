@@ -1,0 +1,18 @@
+{
+  "artifact":"NOIOP Pilot Harness Release Manifest",
+  "version":"1.0",
+  "status":"EXECUTABLE_VALIDATION_HARNESS_ESTABLISHED",
+  "entrypoint":"pilot_harness/run_pilot.py",
+  "automated_tests":"tests/test_pilot_harness.py",
+  "workflow":".github/workflows/pilot-validation.yml",
+  "scenario_count":10,
+  "generated_evidence":[
+    "pilot_results/latest_pilot_results.json",
+    "pilot_results/latest_traceability_matrix.json",
+    "pilot_results/latest_performance_measurements.json"
+  ],
+  "integrity":"SHA-256 hashes bind canonical scenario inputs and results in generated traceability evidence.",
+  "failure_semantics":"Any failed controlled scenario returns a non-zero process exit and fails the workflow.",
+  "institutional_acceptance":"NOT_TESTED",
+  "production_readiness":"NOT_CLAIMED"
+}
