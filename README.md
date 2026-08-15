@@ -2,6 +2,8 @@
 
 National Opportunity Intelligence & Orchestration Platform
 
+[![NOIOP Operational MVP CI](https://github.com/maksr2030/NOIOP-MVP-Operational/actions/workflows/ci.yml/badge.svg)](https://github.com/maksr2030/NOIOP-MVP-Operational/actions/workflows/ci.yml)
+
 NOIOP is a governed opportunity-intelligence and institutional decision-orchestration platform designed to connect opportunity discovery, evidence, prioritization, simulation, human authority, execution controls, and value-realization tracking within one traceable operating lifecycle.
 
 This public repository contains a controlled operational MVP prepared for technical demonstration, validation, and acquisition due diligence. It intentionally excludes confidential trade secrets, transaction valuation materials, negotiation parameters, private data-room documents, production secrets, and sensitive intellectual-property disclosures.
@@ -29,6 +31,33 @@ The current public release demonstrates:
 
 The closed internal F001-F050 feature baseline is referenced but not disclosed in full in this public repository.
 
+## Current verification status
+
+- GitHub Actions continuous integration: passing on the current main branch
+- automated tests: passing in CI
+- Python application compilation: passing in CI
+- previous failing Pages workflow: removed because GitHub Pages is not yet enabled at repository-settings level
+- root `index.html`: ready for branch-based GitHub Pages publication
+- intended public URL after Pages activation: `https://maksr2030.github.io/NOIOP-MVP-Operational/`
+
+The repository is therefore operationally green at code/CI level. Public web publication remains a repository setting, not an application defect.
+
+## Public web release configuration
+
+For GitHub Pages, configure the repository once as follows:
+
+1. Open `Settings` → `Pages`.
+2. Under `Build and deployment`, select `Deploy from a branch`.
+3. Select branch `main`.
+4. Select folder `/(root)`.
+5. Save.
+
+After GitHub publishes the site, the expected public URL is:
+
+`https://maksr2030.github.io/NOIOP-MVP-Operational/`
+
+No separate Pages workflow is required because the browser demonstration is fully static and self-contained in `index.html`.
+
 ## Run locally
 
 ```bash
@@ -41,7 +70,7 @@ Open `http://localhost:8080`.
 ## Run tests
 
 ```bash
-pytest -q
+python -m pytest -q
 ```
 
 ## Public API endpoints
@@ -61,17 +90,15 @@ pytest -q
 - `docs/PUBLIC_EVIDENCE_REPORT.md`
 - `demo_data/portfolio_public.json`
 
-## Current repository status
-
-Public operational MVP hardening in progress.
-
-The repository does not claim production certification, independent penetration-test clearance, regulatory approval, market validation, production-calibrated causal validity, financial outcome guarantees, or an external institutional pilot deployment.
-
 ## Acquisition and due-diligence boundary
 
 The public repository is designed to let an evaluator inspect source, run tests, review commit history, execute the browser demonstration and API, and verify that analytical output does not autonomously create material execution authority.
 
 Deeper architecture, protected feature specifications, sensitive intellectual-property evidence, source-level trade secrets, acquisition valuation, negotiation logic, and controlled data-room materials are not published here.
+
+## Explicit non-claims
+
+The repository does not claim production certification, independent penetration-test clearance, regulatory approval, market validation, production-calibrated causal validity, financial outcome guarantees, or an external institutional pilot deployment.
 
 ## Rights
 
