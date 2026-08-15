@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>NOIOP Operational MVP</title>
+<style>
+:root{--bg:#020817;--panel:#06152e;--gold:#D4AF37;--line:rgba(212,175,55,.32);--text:#fff;--muted:#cbd5e1;--ok:#5ad39a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif;line-height:1.6}.wrap{max-width:1180px;margin:auto;padding:18px}.card{background:linear-gradient(145deg,#06152e,#020817);border:1px solid var(--line);border-radius:16px;padding:18px;margin:12px 0}h1,h2{color:var(--gold)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.kpi{font-size:30px;color:var(--ok)}label{display:block;margin-top:10px;color:var(--muted)}input,textarea,select{width:100%;padding:10px;border-radius:9px;border:1px solid var(--line);background:#020b19;color:#fff}button{margin-top:14px;padding:11px 16px;border-radius:9px;border:1px solid var(--line);background:#0c284e;color:#fff;cursor:pointer}.result{white-space:pre-wrap;background:#020b19;border:1px solid var(--line);padding:14px;border-radius:12px;min-height:120px}.small{color:var(--muted);font-size:14px}@media(max-width:760px){.grid{grid-template-columns:1fr}.wrap{padding:10px}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="card">
+    <h1>NOIOP Operational MVP</h1>
+    <p>National Opportunity Intelligence & Orchestration Platform</p>
+    <p class="small">Controlled public demonstration. This build demonstrates the operating logic without exposing protected trade-secret implementation details.</p>
+  </div>
+  <div class="grid">
+    <div class="card"><h2>Opportunity Intelligence</h2><div class="kpi">Evidence-Grounded</div><p>Score demand, strategic alignment, readiness, risk, timing and evidence quality.</p></div>
+    <div class="card"><h2>Governed Decision</h2><div class="kpi">Human Authority</div><p>Analytical output does not create material execution authority automatically.</p></div>
+  </div>
+  <div class="card">
+    <h2>Interactive Opportunity Assessment</h2>
+    <label>Opportunity title</label><input id="title" value="Industrial AI Energy Optimization">
+    <label>Demand (0-1)</label><input id="demand" type="number" min="0" max="1" step="0.01" value="0.92">
+    <label>Strategic alignment (0-1)</label><input id="alignment" type="number" min="0" max="1" step="0.01" value="0.90">
+    <label>Readiness (0-1)</label><input id="readiness" type="number" min="0" max="1" step="0.01" value="0.80">
+    <label>Risk inverse (0-1)</label><input id="risk" type="number" min="0" max="1" step="0.01" value="0.74">
+    <label>Evidence quality (0-1)</label><input id="evidence" type="number" min="0" max="1" step="0.01" value="0.93">
+    <label>Timing (0-1)</label><input id="timing" type="number" min="0" max="1" step="0.01" value="0.86">
+    <button onclick="assess()">Run governed assessment</button>
+    <h2>Result</h2><div class="result" id="result">Ready.</div>
+  </div>
+  <div class="card"><h2>Public MVP Boundaries</h2><p>No production certification, external institutional pilot, regulatory approval, market validation, or independent penetration-test clearance is claimed by this public repository.</p></div>
+</div>
+<script>
+function n(id){let v=parseFloat(document.getElementById(id).value);return Math.max(0,Math.min(1,isNaN(v)?0:v));}
+function assess(){
+  const x={demand:n('demand'),alignment:n('alignment'),readiness:n('readiness'),risk:n('risk'),evidence:n('evidence'),timing:n('timing')};
+  const score=100*(.22*x.demand+.22*x.alignment+.18*x.readiness+.14*x.risk+.14*x.evidence+.10*x.timing);
+  let decision='REVIEW';
+  if(x.evidence<.55||x.readiness<.45) decision='ABSTAIN';
+  else if(score>=82) decision='PRIORITY CANDIDATE';
+  else if(score>=68) decision='ADVANCE WITH CONDITIONS';
+  const authority=decision==='ABSTAIN'?'NO MATERIAL EXECUTION':'HUMAN APPROVAL REQUIRED';
+  const out={opportunity:document.getElementById('title').value,opportunity_score:Number(score.toFixed(2)),decision,material_execution_authority:authority,evidence_quality:x.evidence,readiness:x.readiness,trace_id:'PUBLIC-DEMO-'+Date.now()};
+  document.getElementById('result').textContent=JSON.stringify(out,null,2);
+}
+</script>
+</body>
+</html>
