@@ -5,9 +5,12 @@ def test_health():
     client = app.test_client()
     response = client.get('/health')
     assert response.status_code == 200
-    assert response.get_json()['status'] == 'ok'
-    assert response.get_json()['version'] == '2.0.0-mvp'
-    assert response.get_json()['persistent_store'] is True
+    body = response.get_json()
+    assert body['status'] == 'ok'
+    assert body['service'] == 'noiop-operational-mvp'
+    assert body['version'] == '2.0.1-mvp'
+    assert body['database_ready'] is True
+    assert isinstance(body['persistent_store'], bool)
 
 
 def test_priority_candidate():
