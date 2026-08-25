@@ -1,6 +1,8 @@
 const queryApi = new URLSearchParams(window.location.search).get('api') || '';
 const storedApi = localStorage.getItem('noiop_api_base') || '';
-const DEFAULT_API = (queryApi || storedApi).replace(/\/$/,'');
+const isGitHubPages = location.hostname.includes('github.io');
+const sameOriginApi = isGitHubPages ? '' : window.location.origin;
+const DEFAULT_API = (queryApi || storedApi || sameOriginApi).replace(/\/$/,'');
 let API_BASE = DEFAULT_API;
 let selectedOpportunityId = null;
 
@@ -10,7 +12,7 @@ function apiUrl(path){ return API_BASE ? API_BASE + path : path; }
 function actor(){ return document.getElementById('actorName')?.value || 'demo-decision-owner'; }
 function apiHeaders(){ return {'Content-Type':'application/json','X-NOIOP-Actor':actor()}; }
 async function api(path, options={}){
-  if(!API_BASE && location.hostname.includes('github.io')) throw new Error('Backend API URL is not configured. Deploy the backend, then connect its HTTPS URL.');
+  if(!API_BASE && isGitHubPages) throw new Error('Backend API URL is not configured. Deploy the backend, then connect its HTTPS URL.');
   const response = await fetch(apiUrl(path), {...options, headers:{...apiHeaders(), ...(options.headers||{})}});
   const text = await response.text(); let data={}; try{data=text?JSON.parse(text):{}}catch{data={raw:text}};
   if(!response.ok) throw new Error(data.error || data.message || `HTTP ${response.status}`);
@@ -20,10 +22,17 @@ function setConn(text, ok=false){ const e=document.getElementById('backendStatus
 function setOutput(id,data){document.getElementById(id).textContent=typeof data==='string'?data:JSON.stringify(data,null,2);}
 
 async function connectBackend(){
-  const field=document.getElementById('apiBase'); API_BASE=(field.value||'').trim().replace(/\/$/,''); localStorage.setItem('noiop_api_base',API_BASE);
+  const field=document.getElementById('apiBase');
+  const requested=(field?.value||'').trim().replace(/\/$/,'');
+  API_BASE=requested || (!isGitHubPages ? window.location.origin : '');
+  if(API_BASE) localStorage.setItem('noiop_api_base',API_BASE);
+  if(field) field.value=API_BASE;
   setConn('Connecting...');
-  try{const h=await api('/health'); setConn(`CONNECTED | ${h.service} | ${h.version} | persistent store: ${h.persistent_store} | opportunities: ${h.opportunity_count}`,true); await loadOpportunities();}
-  catch(e){setConn(`OFFLINE: ${e.message}`);}
+  try{
+    const h=await api('/health');
+    setConn(`CONNECTED | ${h.service} | ${h.version} | database ready: ${h.database_ready} | persistent store: ${h.persistent_store} | opportunities: ${h.opportunity_count}`,true);
+    await loadOpportunities();
+  }catch(e){setConn(`OFFLINE: ${e.message}`);}
 }
 
 function formPayload(){
@@ -38,7 +47,7 @@ function formPayload(){
 }
 
 async function createOpportunity(){
-  try{const r=await api('/api/v1/opportunities',{method:'POST',body:JSON.stringify(formPayload())}); selectedOpportunityId=r.id; setOutput('workspaceOutput',r); await loadOpportunities();}
+  try{const r=await api('/api/v1/opportunities',{method:'POST',body:JSON.stringify(formPayload())}); selectedOpportunityId=r.id; setOutput('workspaceOutput',r); document.getElementById('selectedId').textContent=r.id; await loadOpportunities();}
   catch(e){setOutput('workspaceOutput','Create failed: '+e.message);}
 }
 
@@ -47,6 +56,7 @@ async function loadOpportunities(){
     const r=await api('/api/v1/opportunities'); const body=document.getElementById('liveRows');
     body.innerHTML=r.items.map(x=>`<tr onclick="selectOpportunity('${x.id}')"><td>${x.title}</td><td>${x.tenant_id}</td><td>${x.status}</td><td>${new Date(x.updated_at).toLocaleString()}</td><td><button onclick="event.stopPropagation();selectOpportunity('${x.id}')">Open</button></td></tr>`).join('');
     document.getElementById('liveCount').textContent=r.count;
+    if(r.count===0) document.getElementById('selectedId').textContent='None';
   }catch(e){setOutput('workspaceOutput','Load failed: '+e.message);}
 }
 
@@ -88,7 +98,8 @@ async function livePortfolio(){
 }
 
 window.addEventListener('DOMContentLoaded',()=>{
-  document.getElementById('apiBase').value=API_BASE;
+  const field=document.getElementById('apiBase');
+  if(field) field.value=API_BASE;
   if(API_BASE) connectBackend();
-  else if(location.hostname.includes('github.io')) setConn('FRONTEND LIVE | BACKEND NOT CONFIGURED');
+  else if(isGitHubPages) setConn('FRONTEND LIVE | BACKEND NOT CONFIGURED');
 });
