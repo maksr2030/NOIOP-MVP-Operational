@@ -14,10 +14,13 @@ class FullStackApiTests(unittest.TestCase):
     def setUpClass(cls):
         cls.client = noiop.app.test_client()
 
-    def test_health_reports_persistent_store(self):
+    def test_health_reports_database_ready(self):
         r = self.client.get('/health')
         self.assertEqual(r.status_code, 200)
-        self.assertTrue(r.get_json()['persistent_store'])
+        data = r.get_json()
+        self.assertTrue(data['database_ready'])
+        self.assertEqual(data['status'], 'ok')
+        self.assertIn('persistent_store', data)
 
     def test_create_assess_decide_audit_value_lifecycle(self):
         payload = {
@@ -37,11 +40,17 @@ class FullStackApiTests(unittest.TestCase):
         self.assertEqual(assessment.status_code, 200)
         self.assertTrue(assessment.get_json()['human_approval_required'])
 
-        decision = self.client.post(f'/api/v1/opportunities/{oid}/decisions', json={'actor':'decision-owner','decision':'APPROVE','rationale':'controlled approval'})
+        decision = self.client.post(
+            f'/api/v1/opportunities/{oid}/decisions',
+            json={'actor':'decision-owner','decision':'APPROVE','rationale':'controlled approval'}
+        )
         self.assertEqual(decision.status_code, 201)
         self.assertEqual(decision.get_json()['decision'], 'APPROVE')
 
-        value = self.client.post(f'/api/v1/opportunities/{oid}/value-events', json={'expected_value':100,'realized_value':80,'currency':'SAR'})
+        value = self.client.post(
+            f'/api/v1/opportunities/{oid}/value-events',
+            json={'expected_value':100,'realized_value':80,'currency':'SAR'}
+        )
         self.assertEqual(value.status_code, 201)
         self.assertEqual(value.get_json()['state'], 'PARTIAL_REALIZATION')
 
@@ -54,7 +63,10 @@ class FullStackApiTests(unittest.TestCase):
         self.assertIn('VALUE_REALIZATION_RECORDED', types)
 
     def test_low_evidence_abstains(self):
-        r = self.client.post('/api/v1/assess', json={'readiness':.9,'evidence_quality':.2,'demand':1,'strategic_alignment':1,'risk_inverse':1,'timing':1})
+        r = self.client.post('/api/v1/assess', json={
+            'readiness':.9,'evidence_quality':.2,'demand':1,
+            'strategic_alignment':1,'risk_inverse':1,'timing':1
+        })
         self.assertEqual(r.get_json()['decision'], 'ABSTAIN')
 
 
