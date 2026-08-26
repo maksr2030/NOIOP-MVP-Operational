@@ -8,4 +8,4 @@ COPY . .
 RUN mkdir -p /data
 ENV NOIOP_DB_PATH=/data/noiop.db
 EXPOSE 8080
-CMD ["gunicorn","-b","0.0.0.0:8080","--workers","1","--threads","4","--timeout","120","app:app"]
+CMD ["sh","-c","NOIOP_DB_PATH=/data/noiop.db exec gunicorn -b 0.0.0.0:8080 --workers 1 --threads 4 --timeout 120 app:app"]
