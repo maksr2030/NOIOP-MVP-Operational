@@ -1,24 +1,47 @@
 {
   "artifact": "NOIOP Acquisition Technical Evidence Index",
-  "version": "1.0",
-  "release_status": "PUBLIC_OPERATIONAL_ACCEPTED",
+  "version": "1.1",
+  "release_status": "TECHNICAL_ACQUISITION_CLOSURE_IN_PROGRESS",
   "repository": "maksr2030/NOIOP-MVP-Operational",
-  "public_endpoint": "https://maksr2030.github.io/NOIOP-MVP-Operational/",
+  "public_frontend_reference": "https://maksr2030.github.io/NOIOP-MVP-Operational/",
+  "operational_endpoint": "https://noiop-mvp-operational.onrender.com/",
   "release_branch": "main",
-  "pages_release_commit": "5462028b0731181ed53966af36e48b27f35c751c",
-  "acceptance_record_commit": "3cf58b5ad8062f10f1a29384bac01f0aa1f154b8",
+  "persistent_runtime_commit": "1e6377241ade5c98f6fbe153a0c9b0b2ba1863b3",
+  "technical_closure_record_commit": "96ebfc12a55fe3dbbf3107782c35984ed5d36eba",
+  "buyer_visible_summary_commit": "256937df6314e7aad60c2c40145246c9c47a0668",
+  "internal_gate_register_commit": "cb3c74c70d5df26d01c5cb523df18d186d48d35f",
   "evidence_classes": [
     "public_web_endpoint",
+    "operational_backend_endpoint",
     "git_provenance",
-    "pages_deployment",
     "continuous_integration",
-    "automated_tests",
+    "automated_full_stack_lifecycle_tests",
+    "persistent_opportunity_workspace",
     "public_safe_architecture",
     "operational_demonstration",
     "human_authority_boundary",
-    "disclosure_control"
+    "governed_assessment",
+    "value_realization",
+    "hashed_audit_events",
+    "disclosure_control",
+    "technical_acquisition_gate_register"
   ],
-  "disclosure_classification": "PUBLIC_SAFE",
+  "closed_live_gates": [
+    "runtime_connectivity",
+    "database_readiness",
+    "persistent_opportunity_creation",
+    "browser_session_reload_persistence"
+  ],
+  "pending_live_gates": [
+    "persistence_across_full_service_redeployment",
+    "live_governed_assessment",
+    "live_human_decision_record",
+    "live_value_realization_event",
+    "live_audit_chain_completeness",
+    "live_portfolio_generation",
+    "health_runtime_persistence_semantic_alignment"
+  ],
+  "disclosure_classification": "PUBLIC_SAFE_PLUS_CONTROLLED_ACQUISITION_EVIDENCE",
   "confidential_material_excluded": true,
-  "ownership_note": "Technical publication evidence supplements but does not replace the separate Intellectual Property Master Ledger and legal chain-of-title documentation."
+  "ownership_note": "Technical publication and operational evidence supplements but does not replace the separate Intellectual Property Master Ledger, signed ownership declaration, and legal chain-of-title documentation."
 }
